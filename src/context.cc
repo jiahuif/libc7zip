@@ -187,9 +187,9 @@ struct archive {
 	C7ZipArchive *arch;
 };
 
-MYEXPORT archive *archive_open(lib *l, in_stream *s, int32_t by_signature) {
+MYEXPORT archive *archive_open(lib *l, in_stream *s, wchar_t * password, int32_t by_signature) {
 	C7ZipArchive *arch = NULL;
-	if (!l->_lib->OpenArchive(s->strm, &arch, by_signature != 0)) {
+	if (!l->_lib->OpenArchive(s->strm, &arch, wstring(password), by_signature != 0)) {
 		return NULL;
 	}
 
